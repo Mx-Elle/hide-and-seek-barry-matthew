@@ -111,6 +111,7 @@ class DumbSeeker(Agent):
         #case3
         if self.last_seen and self.lost:
             if not self.curr_bfs_tar:
+                #todo
                 self.curr_bfs_tar = self.bfs(state)
                 self.index = 0
             
@@ -203,7 +204,7 @@ class DumbSeeker(Agent):
     
     def search_map(self, position: shapely.Point):
         cell_key = (round(position.x, 1), round(position.y, 1))
-        
+        #todo
         if cell_key not in self.searched_points:
             self.searched_points.add(cell_key)
             self.fail = 0
@@ -242,12 +243,11 @@ class DumbSeeker(Agent):
         self.last_positions.clear()
     
     def search_path(self, state: WorldState):
+        #i think arbitrary large number seems to work here
         curr_key = (round(state.seeker_position.x, 1), round(state.seeker_position.y, 1))
-        
         bestp = None
         best_scr = -999999
         trys = 0
-        
         while trys < 150:
             point = self.map.random_position()
             pointkey = (round(point.x, 1), round(point.y, 1))
@@ -259,7 +259,6 @@ class DumbSeeker(Agent):
             if pointkey in self.last_pathps:
                 trys += 1
                 continue
-            
             scr = 0
             
             if pointkey in self.searched_points:
